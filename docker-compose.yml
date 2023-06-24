@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  bot:
+    container_name: "discordbotpy"
+    build: .
+    volumes:
+      - ./.env:/discord_bot/.env
+      - ./cogs:/discord_bot/cogs
+      - ./utils:/discord_bot/utils
+      - ./migrations:/discord_bot/migrations
+    depends_on: 
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres
+    container_name: "discordbotpydb"
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "./healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./db:/var/lib/postgresql/data/
+      - ./healthcheck.sh:/healthcheck.sh
+    command: ["sh", "-c", "chmod +x /healthcheck.sh && docker-entrypoint.sh postgres"]
