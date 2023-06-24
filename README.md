@@ -1,6 +1,9 @@
 # Discord Repost Link Deleter
 This is a base of **https://github.com/popohouse/discordbot** modified which is a fork of **https://github.com/AlexFlipnote/discord_bot.py**
 
+# Current sites to detect reposts
+Below is a list of current sites it will add to database and automatically delete reposts of.
+Twitter: Automatically deleted reposted tweets
 
 # Project Requirements 
 Before running the project, you will need the following
