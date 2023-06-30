@@ -3,9 +3,11 @@ This is a base of **https://github.com/popohouse/discordbot** modified which is 
 
 # Current sites to detect reposts
 Below is a list of current sites it will add to database and automatically delete reposts of.
-| Site  | Deletes |
+| Site  | Deleted |
 | :---          |          ---: |
-| Twitter | Reposted tweet links |
+| Twitter | Reposted tweets |
+| Telegram | Reposted  links|
+
 
 
 
