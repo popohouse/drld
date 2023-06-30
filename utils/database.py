@@ -6,7 +6,7 @@ config = Config.from_env()
 async def create_tables(bot):
     async with bot.pool.acquire() as conn:
         # Define current version of schema here
-        expected_version = 1
+        expected_version = 2
         schema_version_exists = await conn.fetchval('''
             SELECT EXISTS (
                 SELECT 1
@@ -17,6 +17,11 @@ async def create_tables(bot):
         if not schema_version_exists:
             await conn.execute('''
                 CREATE TABLE IF NOT EXISTS tweet (
+                    post text PRIMARY KEY
+                )
+            ''')
+            await conn.execute('''
+                CREATE TABLE IF NOT EXISTS telegram (
                     post text PRIMARY KEY
                 )
             ''')
