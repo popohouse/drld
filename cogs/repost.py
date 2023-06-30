@@ -35,6 +35,8 @@ class Repost(commands.Cog):
         """Saves twitter links to a database, compares if previously posted then automatically removes the message."""
         if message.author.bot:
             return
+        if message.author.guild_permissions.manage_guild:
+            return
         twitter_pattern = r'https?://(www\.)?(fxtwitter|vxtwitter|twitter)\.com/[^\s]+'
         twitter = re.search(twitter_pattern, message.content)
         telegram_pattern = r'https?://(www\.)?t\.me[^\s]+'
